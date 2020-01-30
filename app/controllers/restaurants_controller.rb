@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :set_restaurant, only: [:show, :edit]
+  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
 
   def index
     @restaurants = Restaurant.all
@@ -17,14 +17,37 @@ class RestaurantsController < ApplicationController
 
   def create
     @restaurant = Restaurant.new(restaurant_params)
-    @restaurant.save
-    redirect_to_restaurant_path(@restaurant)
+    respond_to do |format|
+      if @restaurant.save
+        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully created.' }
+        format.json { render :show, status: :created, location: @restaurant }
+      else
+        format.html { render :new }
+        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def update
+def update
+    respond_to do |format|
+      if @restaurant.update(restaurant_params)
+        format.html { redirect_to @restaurant, notice: 'Restaurant was successfully updated.' }
+        format.json { render :show, status: :ok, location: @restaurant }
+      else
+        format.html { render :edit }
+        format.json { render json: @restaurant.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
+  # DELETE /restaurants/1
+  # DELETE /restaurants/1.json
   def destroy
+    @restaurant.destroy
+    respond_to do |format|
+      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
