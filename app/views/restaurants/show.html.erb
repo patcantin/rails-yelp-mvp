@@ -7,13 +7,14 @@
   <%= @restaurant.category %></p>
    <p><strong>Phone number:</strong>
   <%= @restaurant.phone_number %></p>
+  <hr>
     <p><strong>Reviews:</strong></p>
   <ul>
     <% @restaurant.reviews.each do |review| %>
-      <li><%= review.content %></li>
-      <li><%= review.rating %></li>
+      <li><%= review.content %> Rating: <%= review.rating %></li>
     <% end %>
   </ul>
+  <hr>
   <br>
   <%= link_to 'Edit', edit_restaurant_path(@restaurant) %><br>
   <%= link_to 'Destroy', @restaurant, method: :delete, data: { confirm: 'Are you sure?' } %><br>
