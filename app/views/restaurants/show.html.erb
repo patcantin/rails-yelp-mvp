@@ -1,7 +1,13 @@
 <h1><%= @restaurant.name %></h1>
 
-<p>
-  <strong>Address:</strong>
-  <%= @restaurant.address %>
-</p>
+
+  <p><strong>Address:</strong>
+  <%= @restaurant.address %></p>
+   <p><strong>Category:</strong>
+  <%= @restaurant.category %></p>
+   <p><strong>Phone number:</strong>
+  <%= @restaurant.phone_number %></p>
+  <br>
+  <%= link_to 'Home page', restaurants_path %>
+
 

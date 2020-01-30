@@ -4,11 +4,13 @@
 <p><strong><%= link_to 'Create new restaurant', new_restaurant_path %></strong></p>
 <hr>
 
-<% @restaurants.each do |restaurant| %>
-  <p><%= restaurant.name %></p>
-  <p><%= restaurant.address %></p>
-  <p><%= restaurant.phone_number %></p>
-  <p><%= restaurant.category %></p>
-  <br>
-  <hr>
-<% end %>
+
+  <div class="row">
+    <% @restaurants.each do |r| %>
+      <div class="col-xs-12 col-md-3">
+        <%= render "card", restaurant: r %>
+      </div>
+    <% end %>
+  </div>
+
+
